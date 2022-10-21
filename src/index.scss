@@ -24,14 +24,21 @@ body {
 }
 
 .playground {
-  @apply min-h-full gap-2 grid grid-cols-[1fr_2fr_1fr];
+  @apply min-h-full flex justify-center bg-fixed bg-gradient-to-br from-yellow-50 to-teal-50;
 
   aside.sidebar {
-    @apply min-h-full bg-gray-100;
+    @apply min-h-full bg-white/80 w-[calc(20%_-_40px)] p-5;
+
+    &.leftside {
+      @apply fixed left-0 top-0;
+    }
+    &.rightside {
+      @apply fixed right-0 top-0;
+    }
   }
 
   main.view {
-    @apply min-h-full py-10 px-8 drop-shadow-lg bg-white rounded;
+    @apply min-h-full w-3/5 my-5 py-10 px-8 drop-shadow-lg bg-white rounded;
 
     header {
       @apply flex flex-col gap-5;
