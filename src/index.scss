@@ -23,6 +23,17 @@ body {
   @apply text-lg font-semibold text-gray-800;
 }
 
+.accordion-wrapper {
+  @apply flex flex-col gap-5;
+  .accordion-body {
+    @apply mt-2 flex flex-col gap-5;
+
+    &[data-visible="false"] {
+      @apply hidden;
+    }
+  }
+}
+
 .playground {
   @apply min-h-full flex justify-center bg-fixed bg-gradient-to-br from-yellow-50 to-teal-50;
 
