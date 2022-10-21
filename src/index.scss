@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+.MadeCVApp {
+  @apply min-h-full;
+}
+.playground {
+  @apply min-h-full gap-2 grid grid-cols-[1fr_2fr_1fr];
+
+  aside.sidebar {
+    @apply min-h-full bg-gray-100;
+  }
+
+  main.view {
+    @apply min-h-full;
+  }
+}
