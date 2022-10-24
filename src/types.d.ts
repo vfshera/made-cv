@@ -7,7 +7,7 @@ interface Work {
   title: string;
   duration: { from: string; to: ?string };
   summary: string;
-  points: string[];
+  points: ?string[];
 }
 
 //TABLES

@@ -2,8 +2,15 @@ export const importantLinks: UserLinks[] = [
   { title: "Link 1", url: "#" },
   { title: "Link 2", url: "#" },
   { title: "Link 3", url: "#" },
-  { title: "Link 4", url: "#" },
 ];
+
+export const header: { name: string; summary: string } = {
+  name: "Your Name",
+  summary: `Your summary starts here like  sit amet
+  consectetur elit. Eum ab reiciendis itaque ullam, debitis obcaecati
+  dolorem! Sint natus tempore iure deserunt error sunt assumenda labore
+  saepe.  voluptatibus?`,
+};
 
 export const skills: string[] = [
   "4years+ php dev",
