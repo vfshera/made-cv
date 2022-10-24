@@ -1,11 +1,16 @@
 import React, { FC, useState } from "react";
 import Accordion from "../components/Accordion";
-import Input from "../components/Input";
-import ListRack from "../components/ListRack";
-import Links from "../components/ListRack";
 import View from "../components/View";
+import useLinkStore from "../stores/linkStore";
+
+import useSkillStore from "../stores/skillsStore";
+import useStackStore from "../stores/stackStore";
 
 const Playground = () => {
+  const { skills, addSkills } = useSkillStore((state) => state);
+  const { stacks, addStacks } = useStackStore((state) => state);
+  const { links, addLink } = useLinkStore((state) => state);
+
   const [open, setOpen] = useState(1);
 
   const handleOpen = (value: number) => {
@@ -23,7 +28,7 @@ const Playground = () => {
       </aside>
       <View />
       <aside className="sidebar rightside">
-        <h3>Content</h3>
+        <h3 className="font-semibold">Content</h3>
 
         <hr className="bg-gray-50 h-px my-2" />
 
@@ -35,12 +40,30 @@ const Playground = () => {
             handleClick={handleOpen}
             body={() => (
               <>
-                <Input label="Your Name" placeholder="your name" />
-                <button className="bg-blue-500 p-2 rounded text-white hover:text-white/90">
+                <button className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90">
+                  Change Name
+                </button>
+                <button className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90">
                   Change Summary
                 </button>
+                <button className="bg-teal-500 p-2 shadow hover:bg-teal-600 rounded text-white hover:text-white/90">
+                  Add Links
+                </button>
+                {links.length != 0 && (
+                  <section className="list-rack flex flex-col gap-2">
+                    {links.map((item, index) => (
+                      <p
+                        date-url={item.url}
+                        className=" cursor-pointer"
+                        key={index}
+                      >
+                        🔗 {item.title}
+                      </p>
+                    ))}
 
-                <ListRack icon="🔗" name="link" />
+                    <hr className="mt-3 bg-gray-200 " />
+                  </section>
+                )}
               </>
             )}
           />
@@ -51,7 +74,31 @@ const Playground = () => {
             handleClick={handleOpen}
             body={() => (
               <>
-                <ListRack icon="🎓" name="qualifications" />
+                <section className="list-rack flex flex-col gap-2">
+                  <input
+                    type="text"
+                    className="px-2 py-1 rounded border border-gray-300"
+                    placeholder="add new skill"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+
+                        console.log(e);
+
+                        addSkills(e.target.value);
+
+                        e.target.value = "";
+                      }
+                    }}
+                  />
+                  {skills.map((item, index) => (
+                    <p className=" cursor-pointer" key={index}>
+                      🎓 {item}
+                    </p>
+                  ))}
+
+                  {skills.length != 0 && <hr className="mt-3 bg-gray-200 " />}
+                </section>
               </>
             )}
           />
@@ -62,7 +109,29 @@ const Playground = () => {
             handleClick={handleOpen}
             body={() => (
               <>
-                <ListRack icon="🚀" name="tech stack" />
+                <section className="list-rack flex flex-col gap-2">
+                  <input
+                    type="text"
+                    className="px-2 py-1 rounded border border-gray-300"
+                    placeholder="add new tech stack"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+
+                        addStacks(e.target.value);
+
+                        e.target.value = "";
+                      }
+                    }}
+                  />
+                  {stacks.map((item, index) => (
+                    <p className=" cursor-pointer" key={index}>
+                      🚀 {item}
+                    </p>
+                  ))}
+
+                  {stacks.length != 0 && <hr className="mt-3 bg-gray-200 " />}
+                </section>
               </>
             )}
           />
