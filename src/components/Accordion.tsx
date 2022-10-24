@@ -26,7 +26,7 @@ const Accordion: FC<{
   return (
     <div className="accordion flex flex-col ">
       <div
-        className="accordion-header flex justify-between cursor-pointer"
+        className="accordion-header flex justify-between cursor-pointer text-gray-700"
         onClick={() => handleClick(open)}
       >
         {title} <Icon id={open} open={current} />

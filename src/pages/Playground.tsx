@@ -26,7 +26,7 @@ const Playground = () => {
         <hr className="bg-gray-50 h-px my-2" />
         {/* THEME LIST */}
       </aside>
-      <View />
+      <View editMode />
       <aside className="sidebar rightside">
         <h3 className="font-semibold">Content</h3>
 
