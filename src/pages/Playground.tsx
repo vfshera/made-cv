@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import Accordion from "../components/Accordion";
 import View from "../components/View";
+import useEditStore from "../stores/editStore";
 import useLinkStore from "../stores/linkStore";
 
 import useSkillStore from "../stores/skillsStore";
@@ -10,6 +11,7 @@ const Playground = () => {
   const { skills, addSkills } = useSkillStore((state) => state);
   const { stacks, addStacks } = useStackStore((state) => state);
   const { links, addLink } = useLinkStore((state) => state);
+  const { setCategory } = useEditStore((state) => state);
 
   const [open, setOpen] = useState(1);
 
@@ -40,13 +42,22 @@ const Playground = () => {
             handleClick={handleOpen}
             body={() => (
               <>
-                <button className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90">
+                <button
+                  onClick={() => setCategory(1)}
+                  className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90"
+                >
                   Change Name
                 </button>
-                <button className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90">
+                <button
+                  onClick={() => setCategory(2)}
+                  className="bg-blue-500 p-2 shadow hover:bg-blue-600 rounded text-white hover:text-white/90"
+                >
                   Change Summary
                 </button>
-                <button className="bg-teal-500 p-2 shadow hover:bg-teal-600 rounded text-white hover:text-white/90">
+                <button
+                  onClick={() => setCategory(3)}
+                  className="bg-teal-500 p-2 shadow hover:bg-teal-600 rounded text-white hover:text-white/90"
+                >
                   Add Links
                 </button>
                 {links.length != 0 && (
