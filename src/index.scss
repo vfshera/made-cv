@@ -100,7 +100,7 @@ body {
       @apply mt-10 flex flex-col gap-2;
 
       ul.history-list {
-        @apply flex flex-col gap-5 items-center pt-5;
+        @apply flex flex-col gap-5  pt-5;
 
         li.history-list-item {
           @apply text-gray-800 border-t border-gray-100 py-5;
