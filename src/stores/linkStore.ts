@@ -7,7 +7,7 @@ interface ILinkStore {
   addLink: (link: UserLinks) => void;
 }
 
-const useLinkStore = create(
+const useLinkStore = create<ILinkStore>()(
   persist(
     (set) => ({
       links: [],

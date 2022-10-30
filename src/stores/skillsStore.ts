@@ -7,7 +7,7 @@ interface ISkillStore {
   addSkills: (skill: string) => void;
 }
 
-const useSkillStore = create(
+const useSkillStore = create<ISkillStore>()(
   persist(
     (set) => ({
       skills: [],

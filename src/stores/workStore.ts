@@ -7,7 +7,7 @@ interface IWorkStore {
   addWorks: (work: Work) => void;
 }
 
-const useWorkStore = create(
+const useWorkStore = create<IWorkStore>()(
   persist(
     (set) => ({
       work: [],

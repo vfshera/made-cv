@@ -7,7 +7,7 @@ interface IEditStore {
   setCategory: (index: number) => void;
 }
 
-const useEditStore = create(
+const useEditStore = create<IEditStore>()(
   persist(
     (set) => ({
       categories: {

@@ -7,7 +7,7 @@ interface IStackStore {
   addStacks: (stack: string) => void;
 }
 
-const useStackStore = create(
+const useStackStore = create<IStackStore>()(
   persist(
     (set) => ({
       stacks: [],

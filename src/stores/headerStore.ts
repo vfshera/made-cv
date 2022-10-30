@@ -8,7 +8,7 @@ interface IHeaderStore {
   setSummary: (name: string) => void;
 }
 
-const useHeaderStore = create(
+const useHeaderStore = create<IHeaderStore>()(
   persist(
     (set) => ({
       header: {
