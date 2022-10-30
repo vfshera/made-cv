@@ -42,6 +42,19 @@ body {
 
     &.leftside {
       @apply fixed left-0 top-0;
+
+      .features {
+        @apply flex flex-col gap-3;
+        .view-persist {
+          @apply flex gap-2;
+          .view-btn {
+            @apply bg-green-400 py-1.5 rounded-md text-white w-1/2;
+          }
+          .persist-btn {
+            @apply bg-purple-600 py-1.5 rounded-md text-white w-1/2;
+          }
+        }
+      }
     }
     &.rightside {
       @apply fixed right-0 top-0;

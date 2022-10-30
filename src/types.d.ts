@@ -11,3 +11,20 @@ interface Work {
 }
 
 //TABLES
+interface IResume {
+  stacks: string[];
+  skills: string[];
+  links: UserLinks[];
+  work: Work[];
+  header: { name: string; summary: string };
+}
+
+interface IDexResume {
+  holder: string;
+  resume: IResume;
+}
+
+interface IResponse {
+  message: string;
+  code: number;
+}

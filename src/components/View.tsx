@@ -87,7 +87,7 @@ const View: FC<{ editMode: boolean }> = ({ editMode = false }) => {
     }
   };
 
-  // add name
+  // add name`
   const addName = (e) => {
     e.preventDefault();
     if (nameRef.current.value !== "") {

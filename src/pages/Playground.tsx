@@ -1,24 +1,40 @@
 import React, { FC, useState } from "react";
 import Accordion from "../components/Accordion";
 import View from "../components/View";
+import useIndexDB from "../hooks/useIndexDB";
 import useEditStore from "../stores/editStore";
+import useHeaderStore from "../stores/headerStore";
 import useLinkStore from "../stores/linkStore";
 
 import useSkillStore from "../stores/skillsStore";
 import useStackStore from "../stores/stackStore";
+import useWorkStore from "../stores/workStore";
 
 const Playground = () => {
+  const indexeDB = useIndexDB();
+
   const { skills, addSkills } = useSkillStore((state) => state);
   const { stacks, addStacks } = useStackStore((state) => state);
   const { links, addLink } = useLinkStore((state) => state);
   const { setCategory } = useEditStore((state) => state);
+  const { header } = useHeaderStore((state) => state);
+  const { work } = useWorkStore((state) => state);
 
   const [open, setOpen] = useState(1);
+  const [editMode, setEditMode] = useState<boolean>(true);
 
   const handleOpen = (value: number) => {
     setOpen(open === value ? 0 : value);
   };
 
+  const persistToDB = async () => {
+    const res = await indexeDB.setDB({
+      holder: header.name,
+      resume: { skills, links, stacks, header, work },
+    });
+
+    console.log(res);
+  };
   return (
     <div className="playground">
       <aside className="sidebar leftside">
@@ -27,8 +43,35 @@ const Playground = () => {
         </h3>
         <hr className="bg-gray-50 h-px my-2" />
         {/* THEME LIST */}
+        <section className="features">
+          <p>Current : {header.name}</p>
+          <div className="view-persist">
+            <button className="view-btn" onClick={() => setEditMode(!editMode)}>
+              View
+            </button>
+            <button className="persist-btn" onClick={() => persistToDB()}>
+              Persist
+            </button>
+          </div>
+
+          <div className="dbs flex flex-col ">
+            <h3>Available :</h3>
+            <hr className="bg-gray-50 h-px my-2" />
+
+            <div className="db-list flex flex-col">
+              {indexeDB.getDB()?.map((cv, i) => (
+                <p
+                  key={i}
+                  className="text-gray-700  cursor-pointer hover:text-purple-900 p-1"
+                >
+                  {cv.holder}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
       </aside>
-      <View editMode />
+      <View editMode={editMode} />
       <aside className="sidebar rightside">
         <h3 className="font-semibold">Content</h3>
 
