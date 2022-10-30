@@ -28,7 +28,7 @@ const Playground = () => {
   };
 
   const persistToDB = async () => {
-    const res = await indexeDB.setDB({
+    const res = await indexeDB.addCv({
       holder: header.name,
       resume: { skills, links, stacks, header, work },
     });
@@ -62,9 +62,10 @@ const Playground = () => {
               {indexeDB.getDB()?.map((cv, i) => (
                 <p
                   key={i}
-                  className="text-gray-700  cursor-pointer hover:text-purple-900 p-1"
+                  onClick={() => indexeDB.removeCv(cv.id)}
+                  className="text-gray-700 flex items-center justify-between  cursor-pointer hover:text-purple-900 p-1"
                 >
-                  {cv.holder}
+                  {cv.holder}{" "}
                 </p>
               ))}
             </div>

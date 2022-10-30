@@ -20,6 +20,7 @@ interface IResume {
 }
 
 interface IDexResume {
+  id: number;
   holder: string;
   resume: IResume;
 }
